@@ -6,13 +6,13 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
-db_uri = "sqlite:///" + os.path.join(app.root_path, 'data.db')
+db_uri = db_uri = os.environ.get('DATABASE_URL') or "postgresql://localhost/present"
 app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
 db = SQLAlchemy(app)
 GOOGLE_BOOKS_API_URL = "https://www.googleapis.com/books/v1/volumes?q=isbn:"
 
 
-class Data(db.model):
+class Data(db.Model):
     name = db.Column(db.String(), nullable=False)
     title = db.Column(db.String(), nullable=False)
     url = db.Column(db.String(), nullable=False)
