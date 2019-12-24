@@ -22,7 +22,9 @@ def check_present():
     if data["totalItems"] != 1:
         return render_template("present.html", result=0)
     return render_template("present.html", result=1,
-                           title=data["items"]["title"], amazon="https://www.amazon.co.jp/dp/487311778X"+isbn)
+                           title=data["items"]["title"],
+                           amazon="https://www.amazon.co.jp/dp/487311778X"
+                           + isbn)
 
 
 if __name__ == "__main__":
