@@ -1,0 +1,22 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <h1>プレゼント交換所</h1>
+    </head>
+    <body>
+        {% if result %}
+        <p>
+            ニックネーム:{{name}}<br>
+            書籍名:{{title}}<br>
+            Amazonリンク:<a href={{amazon}}>{{amazon}}</a><br>
+            以上の内容でプレゼントを贈りました。<br>
+            <form action="/getpresent" method="POST">
+                <input type="submit" value="プレゼントを受け取る！">
+            </form>
+        </p>
+        {% else %}
+        <p>該当書籍がないか多すぎます。ISBNを確認してください。</p>
+        {% endif %}
+    </body>
+</html>

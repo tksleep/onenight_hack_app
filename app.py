@@ -13,19 +13,26 @@ def send_present():
         return render_template('index.html')
 
 
-@app.route('/present', methods=["POST"])
+@app.route('/sendpresent', methods=["POST"])
 def check_present():
     isbn = request.form["isbn"]
-    req_url = GOOGLE_BOOKS_API_URL
+    req_url = GOOGLE_BOOKS_API_URL + isbn
     response = requests.get(req_url)
     data = json.loads(response.text)
     if data["totalItems"] != 1:
-        return render_template("present.html", result=0)
-    return render_template("present.html", result=1,
-                           title=data["items"]["title"],
-                           amazon="https://www.amazon.co.jp/dp/487311778X"
-                           + isbn)
+        return render_template("present.html", result=False)
+    else:
+        return render_template("present.html", name=request.form["name"],
+                               result=True,
+                               title=data["items"][0]["volumeInfo"]["title"],
+                               amazon="https://www.amazon.co.jp/dp/"
+                               + isbn)
 
+
+"""@app.route('/getpresent', methods=["POST"])
+def get_present():
+
+"""
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=8888, threaded=True)
