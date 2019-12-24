@@ -2,7 +2,7 @@ import requests
 import json
 import os
 from flask import Flask, request, render_template
-from flask_sqlalchemy import SQLAlchemy
+from flask.ext.sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
