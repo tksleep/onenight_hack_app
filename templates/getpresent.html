@@ -1,0 +1,15 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <h1>プレゼント交換所</h1>
+    </head>
+    <body>
+        <p>
+            プレゼントが送られてきました。
+                {% for todo in todos %}
+                  {{ todo.title }} : {{todo.status}}</li>
+                {% endfor %}
+        </p>
+    </body>
+</html>

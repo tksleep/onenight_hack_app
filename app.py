@@ -51,6 +51,7 @@ def check_present():
 def get_present():
     got_present = db.session.query(Data).order_by(db.func.random()).first()
     print(got_present)
+    return 0
 
 
 if __name__ == "__main__":
