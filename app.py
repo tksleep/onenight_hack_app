@@ -6,8 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
-db_uri = db_uri = os.environ.get('DATABASE_URL') or "postgresql://localhost/present"
-app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 GOOGLE_BOOKS_API_URL = "https://www.googleapis.com/books/v1/volumes?q=isbn:"
 
