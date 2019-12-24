@@ -50,9 +50,9 @@ def check_present():
 @app.route('/getpresent', methods=["POST"])
 def get_present():
     got_present = db.session.query(Data).order_by(db.func.random()).first()
-    for a in got_present:
-        print(a)
-    return render_template("getpresent.html", datas=got_present)
+    print(got_present)
+    return render_template("getpresent.html", name=got_present.name,
+                           title=got_present.title, url=got_present.url)
 
 
 if __name__ == "__main__":
