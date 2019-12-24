@@ -2,16 +2,18 @@ import requests
 import json
 import os
 from flask import Flask, request, render_template
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+db_uri = os.environ.get('DATABASE_URL') or "postgresql://localhost/present"
+app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
 db = SQLAlchemy(app)
 GOOGLE_BOOKS_API_URL = "https://www.googleapis.com/books/v1/volumes?q=isbn:"
 
 
 class Data(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), nullable=False)
     title = db.Column(db.String(), nullable=False)
     url = db.Column(db.String(), nullable=False)
