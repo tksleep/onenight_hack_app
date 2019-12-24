@@ -32,7 +32,7 @@ def check_present():
     response = requests.get(req_url)
     data = json.loads(response.text)
     if data["totalItems"] != 1:
-        return render_template("present.html", result=False)
+        return render_template("sendpresent.html", result=False)
     else:
         present = Data()
         present.name = request.form["name"]
@@ -40,7 +40,7 @@ def check_present():
         present.url = "https://www.amazon.co.jp/dp/" + isbn
         db.session.add(present)
         db.session.commit()
-        return render_template("present.html", name=request.form["name"],
+        return render_template("sendpresent.html", name=request.form["name"],
                                result=True,
                                title=data["items"][0]["volumeInfo"]["title"],
                                amazon="https://www.amazon.co.jp/dp/"
